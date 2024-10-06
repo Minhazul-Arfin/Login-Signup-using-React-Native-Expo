@@ -1,11 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
 import MyButton from '@/components/MyComponents/MyButton'
 import { useRouter } from 'expo-router'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const index = () => {
-
+  
     const router = useRouter();
     const onContinue = () => {
         router.navigate("/login");
@@ -37,4 +36,4 @@ const styles = StyleSheet.create({
     }
 })
 
-// export default index
+export default index

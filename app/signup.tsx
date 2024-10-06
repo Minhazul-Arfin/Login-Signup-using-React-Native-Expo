@@ -1,8 +1,9 @@
 import React from 'react'
 import MyButton from '@/components/MyComponents/MyButton'
-import { View, StyleSheet, Image, Text, Button } from 'react-native'
+import { View, StyleSheet, Image, Text } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
-import { useRouter } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const signup = () => {
     const router = useRouter();
@@ -14,7 +15,8 @@ const signup = () => {
     }
 
   return (
-    <View style={{flex: 1, gap: 4}}>
+    <GestureHandlerRootView>
+        <View style={{flex: 1, gap: 4}}>
         <Image source={require("@/assets/images/signup3.jpg")} style={styles.loginImage}/>
 
         <View style={{gap:20, padding:20}}>
@@ -22,9 +24,11 @@ const signup = () => {
             <TextInput placeholder='Enter Your Email' style={styles.textFiled}/>
             <TextInput placeholder='Enter Password' style={styles.textFiled}/>
             <MyButton title={"Register"} onPress={goRegisterPage}/>
-            <Text style={{paddingHorizontal:40}} onPress={goLogin}> <span style={styles.loginBtn}>Login</span> </Text>
+            <Text style={{paddingHorizontal:40}} onPress={goLogin}> <Link href={"/login"} style={styles.loginBtn}>Login</Link> </Text>
         </View>
-    </View>
+        </View>
+    </GestureHandlerRootView>
+    
   )
 }
 
@@ -41,17 +45,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         marginHorizontal: 30
     },
-    loginBtn: {
-        backgroundColor: "#10b981",
-        paddingHorizontal: 40,
-        paddingVertical: 15,
-        borderRadius: 10,
-        marginHorizontal: 30,
-        fontWeight: "bold",
-        textAlign: "center",
-        padding: 5,
-        color: "white",
-    }
+    // loginBtn: {
+    //     backgroundColor: "#10b981",
+    //     paddingHorizontal: 40,
+    //     paddingVertical: 15,
+    //     borderRadius: 10,
+    //     marginHorizontal: 30,
+    //     fontWeight: "bold",
+    //     textAlign: "center",
+    //     padding: 5,
+    //     color: "white",
+    // }
 });
 
 
