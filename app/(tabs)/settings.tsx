@@ -1,15 +1,22 @@
-import { View, Text, Button, Linking } from 'react-native'
+import { View, Text, Button, Linking} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { GestureHandlerRootView, ScrollView, TextInput } from 'react-native-gesture-handler'
 
 
+// using JSON-SERVER
+// npm install -g json-server
+// npx json-server db_name.json
+// https://github.com/typicode/json-server
 
-const info = () => {
+
+const SettingsTab = () => {
 
     const [data, setData] = useState([]);
     
-    const serachUser = async ()=>{
-        const url = `https://jsonplaceholder.typicode.com/users`;
+    const searchUser = async (searchValue)=>{
+        const url = `https://jsonplaceholder.typicode.com/users?q=${searchValue}`;
+        // const url = `http://10.102.6.45:3000/users?q=${searchValue}`;
+        // console.log(url)
         let result = await fetch(url);
         result = await result.json();
         // console.warn(result)
@@ -18,15 +25,11 @@ const info = () => {
         }
     }
 
-    useEffect(()=>{
-        serachUser();
-    }, []);
+    // useEffect(()=>{
+    //   searchUser();
+    // }, []);
 
  
-    // function callNowBtn (phoneNumber){
-    //     let phoneNbr = phoneNumber;
-    //     Linking.openURL('tel:${phoneNbr}');
-    // }
 
 
   return (
@@ -41,8 +44,8 @@ const info = () => {
                 marginHorizontal: 25,
                 marginVertical: 5,
             }}
-            autoCorrect={false}
-            onChange={(value) => serachUser(value)}
+            // autoCorrect={false}
+            onChangeText={(text) => searchUser(text)}
         />
         <ScrollView>
         <Text style={{fontSize: 30, textAlign:'center'}}>Fetching Data From API</Text>
@@ -63,7 +66,7 @@ const info = () => {
                                      marginHorizontal: '10%',
                                      borderRadius: 20}} 
 
-                                onPress={()=>{Linking.openURL('tel:01732903003');}}>Call Now</Text>
+                                onPress={()=>{Linking.openURL(`tel:${item.phone}`);}}>Call Now</Text>
                     </View>   
             )
             : null
@@ -73,4 +76,4 @@ const info = () => {
   )
 }
 
-export default info
+export default SettingsTab
