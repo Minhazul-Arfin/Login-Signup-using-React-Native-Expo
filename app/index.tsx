@@ -1,40 +1,61 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, StyleSheet, Image, Text, TextInput } from 'react-native'
 import MyButton from '@/components/MyComponents/MyButton'
-import { useRouter } from 'expo-router'
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+// import { TextInput } from 'react-native-gesture-handler'
+import { Link, useRouter } from 'expo-router'
+import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
+import React, { useState } from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const index = () => {
+const login = () => {
+    
 
     const router = useRouter();
-    const onContinue = () => {
-        router.navigate("/login");
+    const goRegisterPage = () => {
+        router.navigate("/(tabs)/tabIndex");
     }
 
 
   return (
     <GestureHandlerRootView >
-        <View style={styles.homeContainer}>
-            <Text style={styles.welcomeText}>Welcome To Test App from stack</Text>
-            <MyButton title={"Continue"} onPress={onContinue}/>
-        </View>
+        <ScrollView>
+        <SafeAreaView style={{flex: 1, gap: 4}}>
+            <Text style={styles.nsuTitle}>Welcome To NSU</Text>
+            <Image source={require("@/assets/images/login.jpg")} style={styles.loginImage}/>
+
+            <View style={{gap:20, padding:20}}>
+                <TextInput placeholder='Enter User Name' style={styles.textFiled}/>
+                <TextInput placeholder='Enter Password' style={styles.textFiled}/>
+                <MyButton title={"Login"} onPress={goRegisterPage}/>
+                <Text style={{paddingHorizontal:40}} onPress={goRegisterPage}>New Here?  <Link href={"/signup"}>Signup Now</Link></Text>
+            </View>
+        </SafeAreaView>
+        </ScrollView>
+        
     </GestureHandlerRootView>
     
   )
 }
 
-const styles = StyleSheet.create({
-    homeContainer: {
-        alignContent: "center",
-        justifyContent: "center",
-        alignItems: "center",
-        flex: 1,
-        gap: 50,
-    },
-    welcomeText: {
-        fontSize: 30,
-        fontWeight: "bold",
-    }
-})
 
-// export default index
+const styles = StyleSheet.create({
+    loginImage: {
+        width: "100%",
+        height: 400,
+        resizeMode: "cover"
+    },
+    textFiled: {
+        height: 50,
+        borderWidth: 1,
+        borderRadius: 10,
+        paddingHorizontal: 20,
+        marginHorizontal: 30
+    },
+    nsuTitle:{
+        textAlign: "center",
+        fontSize: 40,
+        fontWeight: "500",
+    }
+});
+
+
+export default login

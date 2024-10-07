@@ -14,8 +14,8 @@ const index = () => {
   return (
     <GestureHandlerRootView >
         <View style={styles.homeContainer}>
-            <Text style={styles.welcomeText}>Welcome To Test App</Text>
-            <MyButton title={"Continue"} onPress={onContinue}/>
+            <Text style={styles.welcomeText}>Welcome To Home Page</Text>
+            <MyButton title={"Login"} onPress={onContinue}/>
         </View>
     </GestureHandlerRootView>
     
