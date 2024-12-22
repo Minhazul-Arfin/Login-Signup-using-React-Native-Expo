@@ -1,0 +1,14 @@
+import { View, Text } from 'react-native'
+import React from 'react'
+import { Stack, Tabs } from 'expo-router'
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+
+const MainTabsLayout = () => {
+  return (
+    <Stack>
+      <Stack.Screen name='index' options={{title:"Home"}}/>
+    </Stack>
+  )
+}
+
+export default MainTabsLayout
