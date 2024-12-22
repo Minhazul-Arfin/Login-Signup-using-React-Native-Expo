@@ -88,27 +88,10 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 const index = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch('http://10.102.6.45/login.php')
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={data}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text>Main Index</Text>
-            {/* <Text>{item.username}</Text> */}
-          </View>
-        )}
-      />
+      <Text>This is Main Home Screen</Text>
     </View>
   );
 };
@@ -117,6 +100,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems:'center',
     padding: 20,
   },
   item: {
